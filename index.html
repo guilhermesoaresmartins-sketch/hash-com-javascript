@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hash de senhas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Hash de senhas</h1>
+      <p>Digite uma senha e veja o mesmo texto passar por três hashes, do mais fraco ao mais seguro.</p>
+    </header>
+
+    <section class="entrada">
+      <label for="senha">Senha</label>
+      <div class="linha">
+        <input id="senha" type="text" value="amor" autocomplete="off" spellcheck="false">
+        <button id="inverter" type="button">Inverter letras</button>
+      </div>
+      <p class="dica">Teste com <strong>amor</strong> e depois clique em inverter para virar <strong>roma</strong>.</p>
+    </section>
+
+    <section class="hash fraco" aria-labelledby="t1">
+      <div class="topo">
+        <h2 id="t1">1. Soma ASCII</h2>
+        <span class="selo">Fraco</span>
+      </div>
+      <p>É o hash do curso: soma o código de cada letra. A ordem não importa, então anagramas dão o mesmo número.</p>
+      <div id="chips" class="chips" aria-live="polite"></div>
+      <output id="r1" class="resultado">—</output>
+    </section>
+
+    <section class="hash fraco" aria-labelledby="t2">
+      <div class="topo">
+        <h2 id="t2">2. djb2</h2>
+        <span class="selo">Fraco</span>
+      </div>
+      <p>Multiplica o valor acumulado por 33 antes de somar cada letra. Agora a ordem muda o resultado, mas são só 32 bits e é rápido demais.</p>
+      <output id="r2" class="resultado">—</output>
+    </section>
+
+    <section class="hash seguro" aria-labelledby="t3">
+      <div class="topo">
+        <h2 id="t3">3. PBKDF2 com salt</h2>
+        <span class="selo">Seguro</span>
+      </div>
+      <p>Usa um salt aleatório e 200.000 repetições. É lento de propósito, o que atrapalha a força bruta. Cada clique gera um salt novo, então o resultado muda mesmo com a mesma senha.</p>
+      <button id="gerar" type="button" class="principal">Gerar hash seguro</button>
+      <output id="r3" class="resultado">—</output>
+
+      <div class="verificar" id="verificar" hidden>
+        <label for="tentativa">Tentar outra senha contra esse hash</label>
+        <div class="linha">
+          <input id="tentativa" type="text" autocomplete="off" spellcheck="false">
+          <button id="verifica" type="button">Verificar</button>
+        </div>
+        <p id="status" class="status" role="status"></p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Projeto de estudo. Para um sistema real, use bcrypt ou argon2.</p>
+    </footer>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
