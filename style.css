@@ -1,0 +1,268 @@
+:root {
+  --fundo: #e8edf1;
+  --papel: #f7f9fa;
+  --tinta: #15222c;
+  --suave: #4d5d69;
+  --linha: #c5d0d8;
+  --acento: #1b5e8c;
+  --fraco: #b3402a;
+  --seguro: #1f7a4d;
+  --fonte: "Familjen Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundo: #10181e;
+    --papel: #18232b;
+    --tinta: #e6edf1;
+    --suave: #9fb0bc;
+    --linha: #2c3b46;
+    --acento: #6cb4e4;
+    --fraco: #f08a72;
+    --seguro: #5fcf97;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--tinta);
+  font-family: var(--fonte);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+
+main {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2.25rem, 7vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+p {
+  margin: 0 0 1rem;
+  max-width: 60ch;
+}
+
+header p {
+  color: var(--suave);
+  font-size: 1.1875rem;
+}
+
+/* ---------- entrada ---------- */
+
+.entrada {
+  margin: 2.5rem 0 2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-weight: 600;
+}
+
+.linha {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+input {
+  flex: 1 1 14rem;
+  min-width: 0;
+  padding: 0.75rem 0.875rem;
+  border: 2px solid var(--linha);
+  border-radius: 6px;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--mono);
+  font-size: 1.125rem;
+}
+
+input:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--acento);
+  outline-offset: 2px;
+}
+
+button {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--tinta);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--tinta);
+  font-family: var(--fonte);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--tinta);
+  color: var(--fundo);
+}
+
+button.principal {
+  border-color: var(--acento);
+  background: var(--acento);
+  color: var(--papel);
+}
+
+button.principal:hover {
+  filter: brightness(1.1);
+  background: var(--acento);
+  color: var(--papel);
+}
+
+.dica {
+  margin: 0.625rem 0 0;
+  color: var(--suave);
+  font-size: 0.9375rem;
+}
+
+/* ---------- blocos de hash ---------- */
+
+.hash {
+  margin-bottom: 1.25rem;
+  padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+  border-left: 8px solid var(--linha);
+  border-radius: 0 6px 6px 0;
+  background: var(--papel);
+}
+
+.hash.fraco {
+  border-left-color: var(--fraco);
+}
+
+.hash.seguro {
+  border-left-color: var(--seguro);
+}
+
+.topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.selo {
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.fraco .selo {
+  color: var(--fraco);
+}
+
+.seguro .selo {
+  color: var(--seguro);
+}
+
+/* ---------- letras com código ASCII ---------- */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+.chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 2.75rem;
+  padding: 0.375rem 0.5rem;
+  border: 1px solid var(--linha);
+  border-radius: 4px;
+  background: var(--fundo);
+  font-family: var(--mono);
+  line-height: 1.2;
+}
+
+.chip b {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.chip small {
+  color: var(--suave);
+  font-size: 0.8125rem;
+}
+
+.vazio {
+  color: var(--suave);
+  font-size: 0.9375rem;
+}
+
+/* ---------- resultado ---------- */
+
+.resultado {
+  display: block;
+  padding: 0.75rem 0.875rem;
+  border-radius: 4px;
+  background: var(--fundo);
+  font-family: var(--mono);
+  font-size: 1.0625rem;
+  overflow-wrap: anywhere;
+}
+
+button + .resultado {
+  margin-top: 0.875rem;
+}
+
+.verificar {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--linha);
+}
+
+.status {
+  margin: 0.625rem 0 0;
+  font-weight: 600;
+}
+
+.status.ok {
+  color: var(--seguro);
+}
+
+.status.erro {
+  color: var(--fraco);
+}
+
+footer {
+  margin-top: 2.5rem;
+  color: var(--suave);
+  font-size: 0.9375rem;
+}
+
+@media (max-width: 30rem) {
+  main {
+    padding-top: 2rem;
+  }
+
+  .hash {
+    padding: 1rem 1rem 1rem 1.125rem;
+  }
+
+  button {
+    flex: 1 1 100%;
+  }
+}
